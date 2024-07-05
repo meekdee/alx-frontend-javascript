@@ -1,48 +1,37 @@
-// Define the Student interface
 interface Student {
-    firstName: string;
-    lastName: string;
-    age: number;
-    location: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
 }
 
-// Create two students
 const student1: Student = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 20,
-    location: "New York"
+  firstName: "John",
+  lastName: "Doe",
+  age: 25,
+  location: "New York"
 };
 
 const student2: Student = {
-    firstName: "Jane",
-    lastName: "Smith",
-    age: 22,
-    location: "Los Angeles"
+  firstName: "Jane",
+  lastName: "Doe",
+  age: 23,
+  location: "London"
 };
 
-// Create an array named studentsList containing the two students
 const studentsList: Student[] = [student1, student2];
 
-// Render a table and append a new row for each student
-document.addEventListener("DOMContentLoaded", () => {
-    const table = document.createElement("table");
-    const tbody = document.createElement("tbody");
+function renderTable() {
+  const table = document.createElement("table");
+  studentsList.forEach(student => {
+    const row = table.insertRow();
+    const firstNameCell = row.insertCell();
+    firstNameCell.innerHTML = student.firstName;
+    const locationCell = row.insertCell();
+    locationCell.innerHTML = student.location;
+  });
+  document.body.appendChild(table);
+}
 
-    studentsList.forEach((student) => {
-        const row = document.createElement("tr");
+renderTable();
 
-        const firstNameCell = document.createElement("td");
-        firstNameCell.textContent = student.firstName;
-        row.appendChild(firstNameCell);
-
-        const locationCell = document.createElement("td");
-        locationCell.textContent = student.location;
-        row.appendChild(locationCell);
-
-        tbody.appendChild(row);
-    });
-
-    table.appendChild(tbody);
-    document.body.appendChild(table);
-});
